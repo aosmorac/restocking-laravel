@@ -39,6 +39,7 @@ RUN apk add --update \
            make
 RUN apk update; 
 RUN apk add nodejs;
+RUN apk add npm;
 
 # Set aliases
 RUN echo '\
