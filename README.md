@@ -35,14 +35,14 @@ Go into docker container
 ```sh
 docker exec -i -t restocking bash
 ```
-Then, inside the continer
+Then, inside the container
 ```sh
 cd restocking
 npm install
 composer install
 ```
 ### Config
-Create the file .env with connectios config. The file must be
+Create the file .env with connections config. The file must be
 
 >APP_NAME=Restocking
 >APP_ENV=local
@@ -86,7 +86,7 @@ Create the file .env with connectios config. The file must be
 
 ### Data Base
 
-To inicialize the tables into your database just you have to do
+To initialize the tables into your database just you have to do
 ```sh
 php artisan migrate
 ```
@@ -113,10 +113,12 @@ $lists->each(function($list){$items = factory('App\Item', 10)->create(['list_id'
 ```
 
 ### Using App
-The url is http://localhost:8080/ 
+The url is http://localhost:8080/
 You must register a new user;
 
 In order to have a user admin and create new items the rol field in user table must be 1.
+
+
 
 
 
