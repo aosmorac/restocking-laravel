@@ -34,15 +34,36 @@ class ManageListsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_view_all_lists()
+    public function a_unauthenticated_user_cant_view_all_lists()
     {
+        $this->withExceptionHandling();
+        $this->get('/lists')
+            ->assertRedirect('/login');
+    }
+
+    /** @test */
+    public function a_authenticated_user_can_view_all_lists()
+    {
+        $this->signIn();
         $this->get('/lists')
             ->assertSee($this->list->title);
     }
 
     /** @test */
-    function a_user_can_read_items_that_are_associated_with_a_list()
+    function a_unauthenticated_user_cant_read_items_that_are_associated_with_a_list()
     {
+        $this->withExceptionHandling();
+
+        $list = create('App\Rlist');
+
+        $this->get($list->path())
+            ->assertRedirect('/login');
+    }
+
+    /** @test */
+    function a_authenticated_user_can_read_items_that_are_associated_with_a_list()
+    {
+        $this->signIn();
         $item = create('App\Item', ['list_id' => $this->list->id]);
 
         $this->get($this->list->path())
